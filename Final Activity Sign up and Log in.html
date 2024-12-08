@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Activity</title>
+</head>
+<body>
+
+<div class="container "style="background-color: #B1D1C1; width: 40%; height: 300px; margin-top: 10%;margin-left:30%;border-radius:20px; ">
+  <div class="col" style="text-align:center;">
+    <h1>SIGN IN FORM</h1>
+    <form>
+      <div class="username">
+          <label for="usernme" style="margin-top: 10%;">Username</label>
+          <input type="username" name="usernme" id="usernme" placeholder="Username" style="margin-top: 10%;"required>
+      </div>
+      <div class="pass">
+          <label for="Password1" style="margin-top: 3%">Password</label>
+          <input type="password" name="Password1" class="form-control" id="Password1" placeholder="Password"style="margin-top: 3%;"required>
+      </div>
+      <button onclick="signUp()"style="margin-top: 3%; font: 1em sans-serif;font-size: 20px;border-radius:20px;background-color: #9DC183;">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="container "style="background-color: #689268; width: 40%; height: 300px; margin-top: 
+10%;margin-left:30%;border-radius:20px; ">
+  <div class="col"style="text-align:center;" >
+    <h1>LOG IN FORM</h1>
+    <form>
+      <div class="Name">
+          <label for="uname" style="margin-top: 10%;">Username</label>
+          <input type="USERNAME" name="uname" id="uname" placeholder="Username" style="margin-top: 10%;"required>
+      </div>
+      <div class="passy">
+          <label for="passwrd" style="margin-top: 3%">Password</label>
+          <input type="password" name="passwrd" id="passwrd" placeholder="Password"style="margin-top: 3%; "required>
+      </div>
+      <button onclick="logIn()" style="margin-top: 3%;font: 1em sans-serif; border-radius:20px;font-size: 20px;background-color: #87E892;">Log in</button>
+    </form>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+<script>
+    function signUp(){
+        const usern=document.getElementById("usernme").value;
+        const pass=document.getElementById("Password1").value;   
+        if(usern&&pass!=""){
+
+            const data = JSON.parse(localStorage.getItem('data'))||[];
+            data.push({
+                username: usern,
+                password:pass
+            });
+
+            localStorage.setItem('data',JSON.stringify(data));
+            console.log(usern,pass)
+            document.getElementById("usernme").value='';
+            document.getElementById("Password1").value='';
+            alert("Signed Up Successfully")
+
+        }else{
+            alert("Beng di mag tirik huhuhu")   
+        }
+    }
+  
+
+    function logIn(){
+        const username = document.getElementById("uname").value;
+        password = document.getElementById("passwrd").value;
+
+        const data =JSON.parse(localStorage.getItem('data'))||[];
+
+        user = data.find(user => user.username === username && user.password === password);
+
+    if(user){
+        alert("Login successfully ");
+        console.log("Logged in user:",username,password);
+    }else{
+        alert("Invalid username or password");
+        console.log("No accounts");
+    }
+    }
+</script>
